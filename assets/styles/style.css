@@ -1,0 +1,33 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.container{
+    background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/30c8b9f4-3db9-4b3b-a1ee-8fa56531b712/web/AZ-en-20251201-TRIFECTA-perspective_5cfb16fd-9e6d-43e0-9653-9efd6362e46d_large.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    margin-bottom: 200px;
+}
+.right-header-container ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.right-header-container ul  li{
+    list-style: none;
+}
+.right-header-container ul  li a{
+    text-decoration: none;
+    color: white;
+}
+
