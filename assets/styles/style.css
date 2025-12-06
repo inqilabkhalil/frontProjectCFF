@@ -31,3 +31,22 @@
     color: white;
 }
 
+.shadow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rating-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    gap: 10px;
+}
+.rating-div img{
+    margin-bottom: 10px;
+}
+.shadow h5{
+    font-size: 18px;
+}
