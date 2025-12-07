@@ -1,53 +1,124 @@
-const data = "https://api.tvmaze.com/shows";
-let mainBody = document.querySelector('.swiper-wrapper')
+let mainBody = document.querySelector('.swiper-wrapper');
+const searchInput = document.querySelector('.search-input');
+let page = 1;
+let limit = 5
+let films = []
 const swiper = new Swiper('.swiper', {
     slidesPerView: 3,
     spaceBetween: 20,
-    loop: true,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-        0: { slidesPerView: 1 },
-        576: { slidesPerView: 2 },
-        992: { slidesPerView: 3 }
+    loop: false,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    breakpoints: { 0: { slidesPerView: 1 }, 576: { slidesPerView: 2 }, 992: { slidesPerView: 3 } }
+});
+
+
+function fetchData() {
+    fetch(`https://api.tvmaze.com/shows?&select=key1,key2,key3`)
+        .then(res => res.json())
+        .then(data => {
+            
+            data.slice(50,70).forEach(item => {
+                mainBody.innerHTML += `
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow" data-id="${item.id}">
+                        <img src="${item.image?.original}" width="310px" height="400px">
+                        <h5>${item.name}</h5>
+                        <div class="rating-div">
+                            <h4>${item.rating.average ? item.rating.average :null}</h4>
+                            <img src='.././image.png' width="25px" height="25px">
+                        </div>
+                    </div>
+                </div>`;
+            });
+
+
+            const cards = document.querySelectorAll(".card");
+            cards.forEach(card => {
+                card.addEventListener("click", () => {
+                    const id = card.getAttribute("data-id");
+                    window.open(`detail.html?id=${id}`, "_blank");
+                });
+            });
+
+
+        });
+}
+
+
+fetchData();
+
+  fetch(`https://api.tvmaze.com/shows?&select=key1,key2,key3`)
+        .then(res => res.json())
+        .then(data =>{
+            films= data
+
+            printData(data,page,limit)
+        })
+
+
+
+const cardsCont = document.querySelector(".cards-containerMain")
+
+
+function printData(data, page, limit) {
+    for (let i = (page - 1) * limit; i < limit * page; i++) {
+        const item = data[i];
+        cardsCont.innerHTML += `
+        <div class="simple-card ">
+            <img class="card-image" src="${item.image?.original}" width="200" height="300" >
+            <div class="card-content">
+                <h5 class="card-title">${item.name}</h5>
+                <p class="card-text">${item.premiered}</p>
+            </div>
+        </div>
+        `;
+        const cards = cardsCont.querySelectorAll(".simple-card");
+        cards.forEach(card => {
+        card.addEventListener("click", () => {
+            const id = card.getAttribute("data-id");
+            window.open(`detail.html?id=${id}`, "_blank");
+        });
+    });
+    }
+}
+
+const loadMore = document.querySelector('.load-more');
+loadMore.addEventListener('click', function(e){
+    e.preventDefault();
+    page++;
+    printData(films, page, limit);
+});
+
+
+
+
+
+searchInput.addEventListener("input", function(e) {
+    let searchValue = e.target.value.toLowerCase();
+    let newFilmList;
+
+    cardsCont.innerHTML = '';
+
+    if (searchValue.length > 3) {
+        newFilmList = films.filter(film => film.name.toLowerCase().includes(searchValue));
+        for (let i = 0; i < newFilmList.length; i++) {
+            const item = newFilmList[i];
+            cardsCont.innerHTML += `
+            <div class="simple-card">
+                <img class="card-image" src="${item.image.original}" width="200" height="300" >
+                <div class="card-content">
+                    <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text">${item.premiered}</p>
+                </div>
+            </div>
+            `;
+        }
+    } else {
+        page = 1;
+        printData(films, page, limit);
     }
 });
-fetch(data).then(res=>res.json()).then(data=>{
-    data.forEach(item => {
-            mainBody.innerHTML += `    <div class="swiper-slide"><div class="card p-3 shadow data-id="${item.id}">
-            <img src = ${item.image?.original} width ="300px" height = "400px">
-            <h5>${item.name}</h5>
-            <div class="rating-div"><h4>  ${item.rating.average}</h4> <img src='.././image.png' width = "25px" height ="25px"></div>
-            
-            </div></div>`
-        
-    });
 
-})
-const searchInput = document.querySelector('.search-input')
-searchInput.addEventListener("keyup",function(){
-    const inputValue = searchInput.value.toLowerCase()
-    const swiperSlide = document.querySelectorAll(".swiper-slide")
-    swiperSlide.forEach(item=>{
-        let name = item.querySelector("h5")
-        name = name.innerText.toLowerCase().trim()
-        if(name.includes(inputValue)){
-            item.style.display = "block"
-        }
-        else{
-            item.style.display = "none"
 
-        }
-    })
-    swiper.update();  
-})
-const ratingDiv = document.querySelectorAll(".rating-div")
-ratingDiv.forEach(item=>{
 
-})

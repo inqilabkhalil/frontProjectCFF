@@ -1,0 +1,13 @@
+.container{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxqydAbNssaRLjShwCkaRj0SgMcpeGkXR0jw&s);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 50px;
+}
+.container h1,p{
+    color: white;
+}

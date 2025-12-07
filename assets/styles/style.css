@@ -3,13 +3,18 @@
     margin: 0px;
     box-sizing: border-box;
 }
+
+
 .container{
     background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/30c8b9f4-3db9-4b3b-a1ee-8fa56531b712/web/AZ-en-20251201-TRIFECTA-perspective_5cfb16fd-9e6d-43e0-9653-9efd6362e46d_large.jpg);
-    height: 100vh;
+   min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
+
+    width: 100%;
+
 }
 .header-container{
     display: flex;
@@ -50,3 +55,40 @@
 .shadow h5{
     font-size: 18px;
 }
+.cards-containerMain {
+    display: flex;
+    flex-wrap: wrap;      
+    gap: 20px;     
+    justify-content: center;
+    padding: 10px;
+}
+
+
+.cards-container{
+    margin-top: 250px;
+}
+.cards-containerMain div{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    
+}
+.load-more{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: 600px;
+}
+.simple-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
