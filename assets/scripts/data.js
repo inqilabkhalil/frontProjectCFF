@@ -65,7 +65,7 @@ function printData(data, page, limit) {
     for (let i = (page - 1) * limit; i < limit * page; i++) {
         const item = data[i];
         cardsCont.innerHTML += `
-        <div class="simple-card ">
+       <div class="simple-card" data-id="${item.id}">
             <img class="card-image" src="${item.image?.original}" width="200" height="300" >
             <div class="card-content">
                 <h5 class="card-title">${item.name}</h5>
@@ -105,7 +105,7 @@ searchInput.addEventListener("input", function(e) {
         for (let i = 0; i < newFilmList.length; i++) {
             const item = newFilmList[i];
             cardsCont.innerHTML += `
-            <div class="simple-card">
+             <div class="simple-card" data-id="${item.id}">
                 <img class="card-image" src="${item.image.original}" width="200" height="300" >
                 <div class="card-content">
                     <h5 class="card-title">${item.name}</h5>
