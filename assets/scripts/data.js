@@ -1,7 +1,7 @@
 let mainBody = document.querySelector('.swiper-wrapper');
 const searchInput = document.querySelector('.search-input');
 let page = 1;
-let limit = 5
+let limit = 4
 let films = []
 const swiper = new Swiper('.swiper', {
     slidesPerView: 3,
