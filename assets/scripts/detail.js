@@ -22,5 +22,7 @@ fetch(dataUrl)
 
       <p><strong>Premiered:</strong> ${data.premiered}</p>
 
+      <h3>Summary:</h3>
+      <p>${data.summary}</p>
     `;
   });
