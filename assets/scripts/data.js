@@ -18,7 +18,7 @@ function fetchData() {
         .then(res => res.json())
         .then(data => {
             
-            data.slice(50,70).forEach(item => {
+            data.slice(220).forEach(item => {
                 mainBody.innerHTML += `
                 <div class="swiper-slide">
                     <div class="card p-3 shadow" data-id="${item.id}">
